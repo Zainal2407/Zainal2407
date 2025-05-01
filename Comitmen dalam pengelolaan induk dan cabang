@@ -1,0 +1,23 @@
+cd ~/portal_majnun_layla
+
+# Atur identitas Git
+git config user.email "muhammadzainal240787@gmail.com"
+git config user.name "Muhammad Zainal"
+
+# Hapus konfigurasi GPG signing
+git config --unset commit.gpgsign
+
+# Tambahkan semua perubahan
+git add .
+
+# Commit dengan timestamp
+git commit -m "Update otomatis pada $(date '+%Y-%m-%d %H:%M:%S')"
+
+# Periksa apakah branch master ada
+if git rev-parse --quiet --verify master >/dev/null; then
+  # Push ke GitHub
+  git push origin master
+else
+  # Jika branch master tidak ada, push dengan branch lain (misalnya main)
+  git push origin main
+fi
